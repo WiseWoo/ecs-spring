@@ -13,7 +13,7 @@ pipeline {
         GITCREDENTIAL = 'git_cre'
         
         DOCKERHUB = 'jiwoo0/ecs_spring'
-        DOCKERHUBCREDENTIAL = '	docker_cre'
+        DOCKERHUBCREDENTIAL = 'docker_cre'
     }
 
     stages {
