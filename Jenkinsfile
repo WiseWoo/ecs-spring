@@ -8,7 +8,7 @@ pipeline {
     environment {
         GITNAME = 'WiseWoo'
         GITMAIL = 'jiwooo0@naver.com'
-        GITWEB = 'https://github.com/WiseWoo/ecs-spring.git'
+        GITWEBADD = 'https://github.com/WiseWoo/ecs-spring.git'
         GITSSHADD = 'git@github.com:WiseWoo/ecs-spring.git'
         GITCREDENTIAL = 'git_cre'
         
