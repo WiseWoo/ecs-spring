@@ -46,7 +46,7 @@ pipeline {
             steps{
                 // sh "docker build -t WiseWoo/ecs-spring:1.0 ."
                 sh "docker build -t ${DOCKERHUB}:${currentBuild.number} ."
-                sh "docker build -t ${DOCKERHUB}:latest"
+                sh "docker build -t ${DOCKERHUB}:latest ."
             }
         }
         stage('image push'){
