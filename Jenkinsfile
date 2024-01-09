@@ -11,6 +11,9 @@ pipeline {
         GITWEB = 'https://github.com/WiseWoo/ecs-spring.git'
         GITSSHADD = 'git@github.com:WiseWoo/ecs-spring.git'
         GITCREDENTIAL = 'git_cre'
+        
+        DOCKERHUB = 'jiwoo0/ecs_spring'
+        DOCKERHUBCREDENTIAL = '	docker_cre'
     }
 
     stages {
@@ -41,7 +44,29 @@ pipeline {
         }
         stage('image build'){
             steps{
-                sh "docker build -t WiseWoo/ecs-spring:1.0 ."
+                // sh "docker build -t WiseWoo/ecs-spring:1.0 ."
+                sh "docker build -t ${DOCKERHUB}:${currentBuild.number} ."
+                sh "docker build -t ${DOCKERHUB}:latest"
+            }
+        }
+        stage('image push'){
+            steps{
+                sh "docker push ${DOCKERHUB}:${currentBuild.number}"
+                sh "docker push ${DOCKERHUB}:latest
+            }
+            
+            post {
+                failure {
+                    echo 'docker image push fail'
+                    sh "docker image rm -f ${DOCKERHUB}:${currentBuild.number}"
+                    sh "docker image rm -f ${DOCKERHUB}:latest"
+                }
+                
+                success {
+                    sh "docker push ${DOCKERHUB}:${currentBuild.number}"
+                    sh "docker push ${DOCKERHUB}:latest
+                }
+            }
         }
     }
 }
