@@ -6,11 +6,11 @@ pipeline {
     }
 
     environment {
-        GITNAME='WiseWoo'
-        GITMAIL='jiwooo0@naver.com'
-        GITWEB='https://github.com/WiseWoo/ecs-spring.git'
-        GITSSHADD='git@github.com:WiseWoo/ecs-spring.git'
-        GITCREDENTIAL='git_cre'
+        GITNAME = 'WiseWoo'
+        GITMAIL = 'jiwooo0@naver.com'
+        GITWEB = 'https://github.com/WiseWoo/ecs-spring.git'
+        GITSSHADD = 'git@github.com:WiseWoo/ecs-spring.git'
+        GITCREDENTIAL = 'git_cre'
     }
 
     stages {
@@ -38,6 +38,10 @@ pipeline {
             steps {
                 echo 'Deploying....'
             }
+        }
+        stage('image build'){
+            steps{
+                sh "docker build -t WiseWoo/ecs-spring:1.0 ."
         }
     }
 }
